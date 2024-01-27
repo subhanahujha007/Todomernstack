@@ -99,7 +99,7 @@ localStorage.clear()
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-      ><div style={{display:"flex",flexDirection:"row"}}>  <h1 style={{width:"90%"}}>TODO</h1>
+      ><div style={{display:"flex",flexDirection:"row"}}>  <h1 style={{width:"90%"}}>TODO-APP</h1>
       <Button  onClick={(e)=>removedata(e)} style={{width:"100px",height:"30px"}}><Link style={{textDecoration:'none'}} to="/Login">LOGOUT</Link></Button></div>
         <form onSubmit={handleSubmit}>
           <FormGroup>
