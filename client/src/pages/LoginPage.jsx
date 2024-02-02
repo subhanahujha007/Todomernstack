@@ -90,10 +90,15 @@ useEffect(() => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const response=await axios.post(" http://localhost:8000/api/auth/login",formData)      
+    const response=await axios.post(process.env.LOGIN,formData)
+    
+      
       if(response.data){
       localStorage.setItem("todouser",JSON.stringify(response.data))
         navigate("/")
+      }
+      else{
+        alert("user doent exits")
       }
 
     } catch (error) {

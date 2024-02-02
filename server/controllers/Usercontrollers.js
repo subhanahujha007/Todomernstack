@@ -9,12 +9,12 @@ const registerroute=Asynchandler(async(req,res)=>{
 const {username,password,email}=req.body
 const check=await todomodel.findOne({$or:[{username,email}]})
 if(check){
-throw new Apierrors("username or email already exists",400)
+ new Apiresponse("username or email already exists",400)
 }
 
 const hashedpassword=await bcrypt.hash(password,10)
 const user=await todomodel.create({username,password:hashedpassword,email})
-delete 
+delete user.password
 user.save()
 return res.status(201).json(
      new Apiresponse("user registerd succesfully",200)
@@ -24,15 +24,15 @@ const loginroute=Asynchandler(async(req,res)=>{
 const {username,password}=req.body
 const user=await todomodel.findOne({username})
 if(!user){
-    throw new Apierrors("user doesnt exists",400)
+     new Apiresponse("user doesnt exists",400,user)
 }
-const ispasswordright=bcrypt.compare(password,user.password)
+const ispasswordright=await bcrypt.compare(password,user.password)
 if(!ispasswordright){
-    throw new Apierrors("password incorrect",400)
+     new Apiresponse("password incorrect",400,user)
 }
 delete user.password
  return res.json(
-    new Apiresponse("logged in succesfully",200,user.data)
+    new Apiresponse("logged in succesfully",200,user)
 )
 })
 const createtask=Asynchandler(async(req,res)=>{

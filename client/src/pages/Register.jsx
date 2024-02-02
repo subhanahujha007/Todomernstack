@@ -81,8 +81,9 @@ const RegisterFormComponent = () => {
         e.preventDefault();
     
         try {
-          const apiEndpoint = ' http://localhost:8000/api/auth/register';
+          const apiEndpoint = process.env.REGISTER;
           const response = await axios.post(apiEndpoint, formData);
+          
           if(response){
            
             const userdata=JSON.stringify(response.data)
