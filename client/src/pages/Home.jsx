@@ -64,7 +64,7 @@ const Home = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(process.env.CREATETASK, formData);
+      await axios.post("http://localhost:8000/api/auth/createtask", formData);
       // Fetch data after successfully submitting the form
       fetchData();
     } catch (error) {
@@ -74,7 +74,7 @@ const Home = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(process.env.GETTASK);
+      const response = await axios.get("http://localhost:8000/api/auth/gettask");
       setData(response.data.data || []);
     } catch (error) {
       console.error('Error fetching todos:', error);

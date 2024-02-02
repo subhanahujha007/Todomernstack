@@ -5,7 +5,7 @@ const Todo = (data)=> {
   const [todos, setTodos] = useState([]);
 
 const deleteTask=async(id)=>{try {
-    const response=await axios.delete(`${process.env.DELETETASK}/${id}`)
+    const response=await axios.delete(`http://localhost:8000/api/auth/deletetask/${id}`)
 
 const x=todos.filter((i)=>{
 return (i._id!=id)
@@ -16,7 +16,7 @@ setTodos(x)
 } 
 
 }
-async function fetchdata(){await axios.get(process.env.GETTASK)  
+async function fetchdata(){await axios.get("http://localhost:8000/api/auth/gettask")  
 .then(response => {
   const {  data} = response.data;
 
@@ -51,7 +51,7 @@ async function fetchdata(){await axios.get(process.env.GETTASK)
      
     try {
       
-      const response = await axios.post(`${process.env.UPDATETASK}/${userid}`, value );
+      const response = await axios.post(`http://localhost:8000/api/auth/updatetask/${userid}`, value );
       
     }
     
